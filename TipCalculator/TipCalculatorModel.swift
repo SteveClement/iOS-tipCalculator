@@ -38,5 +38,7 @@ class TipCalculatorModel {
             retval[intPct] = calcTipWithTipPct(possibleTip)
         }
         return retval
+        
     }
+    
 }

@@ -32,7 +32,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vyT-q5-Lff">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vyT-q5-Lff">
                                 <rect key="frame" x="192" y="77" width="392" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -88,6 +88,7 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="2wp-DS-7iH"/>
                     <connections>
                         <outlet property="resultsTextView" destination="jAl-hR-Lod" id="Iec-1Y-ek0"/>
+                        <outlet property="taxPctLabel" destination="xyj-07-5Hh" id="83q-lb-iGv"/>
                         <outlet property="taxPctSlider" destination="aKx-Oo-q0T" id="IIC-Zd-We6"/>
                         <outlet property="totalTextField" destination="vyT-q5-Lff" id="IbL-YX-4Pl"/>
                     </connections>
