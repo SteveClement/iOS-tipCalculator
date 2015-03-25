@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     // let is for constants and var for variables
     // tipCalc gets used in refreshUI() and makes use of our Model
+    // This will also set our initial values for the different objects nb. they cannot be nil
     let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
 
     // *** Outlets ***
@@ -31,7 +32,12 @@ class ViewController: UIViewController {
     // When declaring callbacks for actions from views it assumes a function with no return value
     // and one parameter of type AnyObject (equivalent to 'id' in objC) which represents a class of any type
     @IBAction func calculateTapped(sender : AnyObject) {
+        // This converts a String to a Double, not elegant but Swift has no cleaner way as of yet
+        // NSString from ObjC Foundation has it so probably not ported yet
+        // You can call (foo as NSString)() on a Swift String to convert it to an NSString
+        // Now you can call any method that is available on NSString, such as a method to convert to a double
         tipCalc.total = Double((totalTextField.text as NSString).doubleValue)
+        // This returns a dictionary 
         let possibleTips = tipCalc.returnPossibleTips()
         var results = ""
         for (tipPct, tipValue) in possibleTips {
@@ -40,10 +46,12 @@ class ViewController: UIViewController {
         resultsTextView.text = results
     }
     @IBAction func taxPercentageChanged(sender : AnyObject) {
+        // this simply reverses our multplication
         tipCalc.taxPct = Double(taxPctSlider.value) / 100.0
         refreshUI()
     }
     @IBAction func viewTapped(sender : AnyObject) {
+        // This will dismiss the keyboard
         totalTextField.resignFirstResponder()
     }
 
