@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     // let is for constants and var for variables
     // tipCalc gets used in refreshUI() and makes use of our Model
     // This will also set our initial values for the different objects nb. they cannot be nil
-    let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
+    let tipCalc = TipCalculatorModel(total: 313.37, taxPct: 0.06)
 
     // *** Outlets ***
     // IB == InterfaceBuilder (historical)
@@ -37,12 +37,18 @@ class ViewController: UIViewController {
         // You can call (foo as NSString)() on a Swift String to convert it to an NSString
         // Now you can call any method that is available on NSString, such as a method to convert to a double
         tipCalc.total = Double((totalTextField.text as NSString).doubleValue)
-        // This returns a dictionary 
+        // Call to returnPossibleTips() on tipCalc model, this returns a dictionary
         let possibleTips = tipCalc.returnPossibleTips()
         var results = ""
-        for (tipPct, tipValue) in possibleTips {
-            results += "\(tipPct)%: \(tipValue)\n"
+        // Here we enumerate thourgh keys and values if our dictionary, at the same time
+        var keys = Array(possibleTips.keys)
+        sort(&keys)
+        for tipPct in keys {
+            let tipValue = possibleTips[tipPct]!
+            let prettyTipValue = String(format:"%.2f", tipValue)
+            results += "\(tipPct)%: \(prettyTipValue)\n"
         }
+        // Populating result Text View
         resultsTextView.text = results
     }
     @IBAction func taxPercentageChanged(sender : AnyObject) {
