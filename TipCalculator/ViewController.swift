@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Steve Clement. All rights reserved.
 //
 
+// In swift we import frameworks (similar to Python)
 import UIKit
 
+// This is our ViewController class inheriting from UIViewController
+// Inheritance does not need class prefixing (Obj-C needed it for namespace collison avoidance)
 class ViewController: UIViewController {
 
     // let is for constants and var for variables
@@ -17,7 +20,7 @@ class ViewController: UIViewController {
     // *** Outlets ***
     // IB == InterfaceBuilder (historical)
     // Outlet means you can set n' get "stuff"
-    // The bang (!) at the end will unwrap the variables
+    // The bang (!) at the end will implicitly unwrap the variables
     @IBOutlet var totalTextField : UITextField!
     @IBOutlet var taxPctSlider : UISlider!
     @IBOutlet var taxPctLabel : UILabel!
@@ -25,6 +28,8 @@ class ViewController: UIViewController {
     
     // *** Actions ***
     // Actions mean senders
+    // When declaring callbacks for actions from views it assumes a function with no return value
+    // and one parameter of type AnyObject (equivalent to 'id' in objC) which represents a class of any type
     @IBAction func calculateTapped(sender : AnyObject) {
         tipCalc.total = Double((totalTextField.text as NSString).doubleValue)
         let possibleTips = tipCalc.returnPossibleTips()
@@ -42,7 +47,7 @@ class ViewController: UIViewController {
         totalTextField.resignFirstResponder()
     }
 
-    
+    // This will be called the first time the root view of this Viewcontroller is accessed
     // you have to use override explicitly when you override a function to avoid an accidental override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +63,17 @@ class ViewController: UIViewController {
     }
 
     func refreshUI() {
-            totalTextField.text = String(format: "%0.2f", tipCalc.total)
-            taxPctSlider.value = Float(tipCalc.taxPct) * 100.0
-            taxPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
-            resultsTextView.text = ""
+        // In swift you need to be explicit when converting types
+        // Here we convert a Double to a String
+        totalTextField.text = String(format: "%0.2f", tipCalc.total)
+        // /!\ /!\ /!\
+        // This will make sure we see 6% instead of 0.06 (comment out to see what I mean)
+        // /!\ Didn't see difference investigate /!\
+        taxPctSlider.value = Float(tipCalc.taxPct) * 100.0
+        // This will update the text next to the slider (string interpolation used)
+        taxPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
+        // Clear the results Text View until we press calculate
+        resultsTextView.text = ""
     }
 }
 
