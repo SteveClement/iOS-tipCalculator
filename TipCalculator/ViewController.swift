@@ -40,14 +40,33 @@ class ViewController: UIViewController {
         // Call to returnPossibleTips() on tipCalc model, this returns a dictionary
         let possibleTips = tipCalc.returnPossibleTips()
         var results = ""
-        // Here we enumerate thourgh keys and values if our dictionary, at the same time
-        var keys = Array(possibleTips.keys)
-        sort(&keys)
-        for tipPct in keys {
-            let tipValue = possibleTips[tipPct]!
-            let prettyTipValue = String(format:"%.2f", tipValue)
-            results += "\(tipPct)%: \(prettyTipValue)\n"
-        }
+        
+        
+        // Simple if to trigger sorted or unsorted mode
+        let sorted = false
+        
+        if sorted != true {
+            // Here we enumerate thourgh keys and values if our dictionary, at the same time
+            for (tipPct, tipValue) in possibleTips {
+                results += "\(tipPct)%: \(tipValue)\n"
+            }
+        } else {
+
+            // Add code to sort the results by tip percentage
+            // Grab the keys in an array and store them temporarily
+            var keys = Array(possibleTips.keys)
+            // Sort the the keys
+            sort(&keys)
+            // Enumerate tipPct with our sorted keys variable
+            for tipPct in keys {
+                // Store tip value in variable (! unwraps it all)
+                let tipValue = possibleTips[tipPct]!
+                // Beautify the the tip value by truncating to 2 decimal places
+                let prettyTipValue = String(format:"%.2f", tipValue)
+                // Combine it all and store in a variable
+                results += "\(tipPct)%: \(prettyTipValue)\n"
+            }
+            }
         // Populating result Text View
         resultsTextView.text = results
     }
