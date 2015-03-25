@@ -10,24 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
+    // let is for constants and var for variables
+    // tipCalc gets used in refreshUI() and makes use of our Model
+    let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
+
+    // *** Outlets ***
+    // IB == InterfaceBuilder (historical)
+    // Outlet means you can set n' get "stuff"
+    // The bang (!) at the end will unwrap the variables
     @IBOutlet var totalTextField : UITextField!
     @IBOutlet var taxPctSlider : UISlider!
     @IBOutlet var taxPctLabel : UILabel!
     @IBOutlet var resultsTextView : UITextView!
     
+    // *** Actions ***
+    // Actions mean senders
     @IBAction func calculateTapped(sender : AnyObject) {
-        // 1
         tipCalc.total = Double((totalTextField.text as NSString).doubleValue)
-        // 2
         let possibleTips = tipCalc.returnPossibleTips()
         var results = ""
-        // 3
         for (tipPct, tipValue) in possibleTips {
-            // 4
             results += "\(tipPct)%: \(tipValue)\n"
         }
-        // 5
         resultsTextView.text = results
     }
     @IBAction func taxPercentageChanged(sender : AnyObject) {
@@ -38,6 +42,8 @@ class ViewController: UIViewController {
         totalTextField.resignFirstResponder()
     }
 
+    
+    // you have to use override explicitly when you override a function to avoid an accidental override
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,21 +53,15 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        // This would be a good oportunity to run clean-up routines
+        // This gets called when we run low on memory and gives us only a few seconds to do the clean-up
     }
 
-    let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
-    
     func refreshUI() {
-        // 1
-        totalTextField.text = String(format: "%0.2f", tipCalc.total)
-        // 2
-        taxPctSlider.value = Float(tipCalc.taxPct) * 100.0
-        // 3
-        taxPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
-        // 4
-        resultsTextView.text = ""
+            totalTextField.text = String(format: "%0.2f", tipCalc.total)
+            taxPctSlider.value = Float(tipCalc.taxPct) * 100.0
+            taxPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
+            resultsTextView.text = ""
     }
-
-
 }
 
