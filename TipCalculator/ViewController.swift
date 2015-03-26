@@ -46,7 +46,8 @@ class ViewController: UIViewController {
         if sortedSwitch.on != true {
             // Here we enumerate thourgh keys and values if our dictionary, at the same time
             for (tipPct, tipValue) in possibleTips {
-                results += "\(tipPct)%: \(tipValue)\n"
+                let prettyTipValue = String(format:"%.2f", tipValue)
+                results += "\(tipPct)%: \(prettyTipValue)\n"
             }
         } else {
 
@@ -81,6 +82,8 @@ class ViewController: UIViewController {
         } else {
             sortedLabel.text = "Unsorted"
         }
+        // Set a nice random color for next toggle
+        setSwitchOnTintColor()
     }
 
     @IBAction func viewTapped(sender : AnyObject) {
@@ -92,6 +95,9 @@ class ViewController: UIViewController {
     // you have to use override explicitly when you override a function to avoid an accidental override
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set a nice random color
+        setSwitchOnTintColor()
         // Do any additional setup after loading the view, typically from a nib.
         refreshUI()
     }
@@ -103,6 +109,15 @@ class ViewController: UIViewController {
         // This gets called when we run low on memory and gives us only a few seconds to do the clean-up
     }
 
+    func setSwitchOnTintColor() {
+        // This defines a color array of the given presets
+        let colorBox = [ UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.blackColor(), UIColor.darkGrayColor(), UIColor.lightGrayColor(), UIColor.grayColor(), UIColor.cyanColor(), UIColor.yellowColor(), UIColor.magentaColor(), UIColor.orangeColor(), UIColor.purpleColor(), UIColor.brownColor() ]
+        
+        // This will change the switchs' on position tint color to a random color
+        var index = Int(arc4random_uniform(UInt32(colorBox.count)))
+        sortedSwitch.onTintColor = colorBox[index]
+    }
+    
     func refreshUI() {
         // In swift you need to be explicit when converting types
         // Here we convert a Double to a String
