@@ -25,7 +25,9 @@ class ViewController: UIViewController {
     @IBOutlet var totalTextField : UITextField!
     @IBOutlet var taxPctSlider : UISlider!
     @IBOutlet var taxPctLabel : UILabel!
+    @IBOutlet var sortedLabel : UILabel!
     @IBOutlet var resultsTextView : UITextView!
+    @IBOutlet var sortedSwitch: UISwitch!
     
     // *** Actions ***
     // Actions mean senders
@@ -41,11 +43,7 @@ class ViewController: UIViewController {
         let possibleTips = tipCalc.returnPossibleTips()
         var results = ""
         
-        
-        // Simple if to trigger sorted or unsorted mode
-        let sorted = false
-        
-        if sorted != true {
+        if sortedSwitch.on != true {
             // Here we enumerate thourgh keys and values if our dictionary, at the same time
             for (tipPct, tipValue) in possibleTips {
                 results += "\(tipPct)%: \(tipValue)\n"
@@ -75,6 +73,16 @@ class ViewController: UIViewController {
         tipCalc.taxPct = Double(taxPctSlider.value) / 100.0
         refreshUI()
     }
+    @IBAction func sortedChanged(sender : AnyObject) {
+        // this simply reverses our multplication
+        // sorted = false
+        if sortedSwitch.on == true {
+            sortedLabel.text = "Sorted"
+        } else {
+            sortedLabel.text = "Unsorted"
+        }
+    }
+
     @IBAction func viewTapped(sender : AnyObject) {
         // This will dismiss the keyboard
         totalTextField.resignFirstResponder()

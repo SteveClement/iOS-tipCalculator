@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wDu-mZ-Yb2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -44,7 +46,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngt-P0-gan">
-                                <rect key="frame" x="268" y="154" width="65" height="30"/>
+                                <rect key="frame" x="192" y="154" width="65" height="30"/>
                                 <state key="normal" title="Calculate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -58,6 +60,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DnS-uU-7vV">
+                                <rect key="frame" x="535" y="153" width="51" height="31"/>
+                                <accessibility key="accessibilityConfiguration" label="dasd"/>
+                                <connections>
+                                    <action selector="sortedChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="lfR-bG-HMb"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZn-qO-YNZ">
+                                <rect key="frame" x="413" y="158" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="fdb-qb-ssf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -65,13 +83,18 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jAl-hR-Lod" secondAttribute="bottom" constant="8" symbolic="YES" id="26H-HU-tp3"/>
                             <constraint firstItem="aKx-Oo-q0T" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="4Ox-zJ-1yh"/>
                             <constraint firstItem="ngt-P0-gan" firstAttribute="top" secondItem="aKx-Oo-q0T" secondAttribute="bottom" constant="8" symbolic="YES" id="E6I-lY-NRe"/>
+                            <constraint firstItem="RZn-qO-YNZ" firstAttribute="baseline" secondItem="ngt-P0-gan" secondAttribute="baseline" id="IX6-iu-pgi"/>
                             <constraint firstItem="LQ8-e2-U5d" firstAttribute="trailing" secondItem="xyj-07-5Hh" secondAttribute="trailing" id="NTm-HZ-9Tr"/>
-                            <constraint firstItem="jAl-hR-Lod" firstAttribute="centerX" secondItem="ngt-P0-gan" secondAttribute="centerX" id="NXp-iC-6A6"/>
+                            <constraint firstItem="jAl-hR-Lod" firstAttribute="centerX" secondItem="ngt-P0-gan" secondAttribute="centerX" constant="75.5" id="NXp-iC-6A6"/>
+                            <constraint firstItem="jAl-hR-Lod" firstAttribute="top" secondItem="DnS-uU-7vV" secondAttribute="bottom" constant="8" symbolic="YES" id="P4W-oL-1Mj"/>
                             <constraint firstItem="jAl-hR-Lod" firstAttribute="trailing" secondItem="aKx-Oo-q0T" secondAttribute="trailing" id="RAe-CM-rde"/>
                             <constraint firstItem="jAl-hR-Lod" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Uhi-NA-aB6"/>
                             <constraint firstItem="vyT-q5-Lff" firstAttribute="trailing" secondItem="aKx-Oo-q0T" secondAttribute="trailing" id="V2x-jx-Mea"/>
+                            <constraint firstItem="DnS-uU-7vV" firstAttribute="leading" secondItem="RZn-qO-YNZ" secondAttribute="trailing" constant="22" id="W8J-qZ-BF5"/>
                             <constraint firstItem="jAl-hR-Lod" firstAttribute="top" secondItem="xyj-07-5Hh" secondAttribute="bottom" constant="51" id="Yhd-a8-fd2"/>
                             <constraint firstItem="jAl-hR-Lod" firstAttribute="top" secondItem="ngt-P0-gan" secondAttribute="bottom" constant="8" symbolic="YES" id="bCE-eU-Qlu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DnS-uU-7vV" secondAttribute="trailing" id="bzm-p8-0Az"/>
+                            <constraint firstItem="RZn-qO-YNZ" firstAttribute="centerY" secondItem="DnS-uU-7vV" secondAttribute="centerY" id="cW7-Up-gxz"/>
                             <constraint firstItem="aKx-Oo-q0T" firstAttribute="top" secondItem="vyT-q5-Lff" secondAttribute="bottom" constant="9" id="cWc-E5-jg9"/>
                             <constraint firstItem="LQ8-e2-U5d" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="f6h-zK-RNz"/>
                             <constraint firstItem="xyj-07-5Hh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="fNK-oI-BWD"/>
@@ -80,6 +103,7 @@
                             <constraint firstItem="xyj-07-5Hh" firstAttribute="top" secondItem="LQ8-e2-U5d" secondAttribute="bottom" constant="18" id="hiy-45-pbI"/>
                             <constraint firstItem="vyT-q5-Lff" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="13" id="i00-wg-moZ"/>
                             <constraint firstItem="LQ8-e2-U5d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="17" id="m3C-1E-dYB"/>
+                            <constraint firstItem="RZn-qO-YNZ" firstAttribute="baseline" secondItem="ngt-P0-gan" secondAttribute="firstBaseline" id="v90-nI-ZJs"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="eSf-Ih-Igc" appends="YES" id="Rx0-6s-ORX"/>
@@ -88,6 +112,8 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="2wp-DS-7iH"/>
                     <connections>
                         <outlet property="resultsTextView" destination="jAl-hR-Lod" id="Iec-1Y-ek0"/>
+                        <outlet property="sortedLabel" destination="RZn-qO-YNZ" id="4hZ-aQ-tb1"/>
+                        <outlet property="sortedSwitch" destination="DnS-uU-7vV" id="kzi-fu-RWV"/>
                         <outlet property="taxPctLabel" destination="xyj-07-5Hh" id="83q-lb-iGv"/>
                         <outlet property="taxPctSlider" destination="aKx-Oo-q0T" id="IIC-Zd-We6"/>
                         <outlet property="totalTextField" destination="vyT-q5-Lff" id="IbL-YX-4Pl"/>
